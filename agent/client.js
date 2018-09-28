@@ -34,24 +34,26 @@ console.log(calender);
 
 // --------------------------------------------
 // api for one way communication
-var cors = require('cors');
-var express = require('express')
-var app = express();
-app.use(cors())
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/calender', function (req, res) {
-  console.log('api: /calender');
-  let cal = [];
-  calender.forEach(function(c) {
-    let cStartDate = new Date(c.date + ' ' + c.start);
-    let cEndDate = new Date(c.date + ' ' + c.end);
-    cal.push(Object.assign(c, convertSpan(cStartDate, cEndDate)));
+if (agentId === 'maria') {
+  var cors = require('cors');
+  var express = require('express')
+  var app = express();
+  app.use(cors())
+  // respond with "hello world" when a GET request is made to the homepage
+  app.get('/calender', function (req, res) {
+    console.log('api: /calender');
+    let cal = [];
+    calender.forEach(function(c) {
+      let cStartDate = new Date(c.date + ' ' + c.start);
+      let cEndDate = new Date(c.date + ' ' + c.end);
+      cal.push(Object.assign({}, c, convertSpan(cStartDate, cEndDate)));
+    });
+    res.send(JSON.stringify(cal));
   });
-  res.send(JSON.stringify(cal));
-});
-app.listen(3100, function () {
-  console.log('Api listening on port ' + 3100 + '!');
-});
+  app.listen(3100, function () {
+    console.log('Api listening on port ' + 3100 + '!');
+  });
+}
 // --------------------------------------------
 
 
@@ -167,9 +169,17 @@ function handleScheduleRequest(socket, load) {
           //startDate: "2018-09-28T11:00:00.000Z", endDate: "2018-09-28T12:00:00.000Z"}
           let diff = endDate - startDate;
           socket.emit('result', convertSpan(startDate, endDate));
-          //let event = {title: load.title};
-          //console.log(event);
-          //calender.push(event);
+
+          // add the event
+          let event = {
+            title: load.title,
+            date: startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate(),
+            start:startDate.getHours()+":00",
+            end:endDate.getHours()+":00",
+            level:0
+          };
+          console.log(event);
+          calender.push(event);
         }
       }
     });

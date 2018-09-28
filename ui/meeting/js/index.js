@@ -156,7 +156,7 @@
         //io.set('origins', '*:*');
         socket.on('connect', function(){
           console.log("connection");
-          
+
           socket.once('result', function(msg){
             console.log(msg);
             if (msg === 'none') {
