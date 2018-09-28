@@ -55,7 +55,7 @@ function onConnect(){
   hub.emit('listen-for', {event: 'wantsOccupationLevel', agentId: agentId});
 
 
-  if (agentId === 'maria') {
+/*  if (agentId === 'maria') {
     // Test
     setTimeout(function() {
       let load = {
@@ -66,7 +66,7 @@ function onConnect(){
       };
       handleScheduleRequest(null, load);
     }, 2000);
-  }
+  }*/
 
 
 }
