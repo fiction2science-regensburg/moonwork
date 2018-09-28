@@ -85,9 +85,9 @@
     // ;
     
     // print URL
-    $( this ).after( '<a class="meeting">' + '</a>' );
+    //$( this ).after( '<a class="meeting">' + '</a>' );
     
-    event.preventDefault();
+    //event.preventDefault();
     return false;
   });
 
@@ -115,10 +115,44 @@
        }
   }
   });
-  
-  function submitForm() {
-    alert('this function is called');
-  }
+
+  $('#submit').click(function(){
+        //var x = document.getElementById("foo_form");
+        //var text = "";
+        //var i;
+        //var obj = document.getElementById("example-collapse");
+        
+        
+        // for(var i=0;i<obj.selectedIndex;i++){
+        //   alert(obj.options[i].text);  
+        // }
+        //alert(obj.options[obj.selectedIndex].text);
+        
+        
+        var title = document.getElementById( 'title');
+        alert(title.value);
+        var date = document.getElementById( 'date' );
+        alert(date.value);
+        var duration = document.getElementById("duration-picker");
+        alert(duration.value);
+
+        // for (i = 0; i < x.length ;i++) {
+        //     text = x.elements[i].value;
+        //     //alert(text);
+        // }
+        //alert("creating meeting");
+
+        var values = $('#example-collapse').val();
+        alert(values);
+
+        var socket = io();
+        socket.emit('chat message', participants);
+        //$('#m').val('');
+       
+        socket.on('chat message', function(msg){
+          alert(msg);
+        });
+  })
 
 
 }( jQuery ));

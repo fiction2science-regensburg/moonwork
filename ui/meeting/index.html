@@ -73,7 +73,7 @@
             </div>
 
             <div class="panel-body">
-            <input type="submit" id="submit" onclick="submitForm()">
+            <input type="button" id="submit" value="Create">
             </div>
           </div>
         </div>
@@ -82,37 +82,37 @@
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
   <script>
-      function submitForm(formdata) {
-        var x = document.getElementById("foo_form");
-        var text = "";
-        var i;
-        var obj = document.getElementById("example-collapse");
-        //alert(obj.options[obj.selectedIndex].text);
-        alert(participants);
+      // function submitForm(formdata) {
+      //   var x = document.getElementById("foo_form");
+      //   var text = "";
+      //   var i;
+      //   var obj = document.getElementById("example-collapse");
+      //   //alert(obj.options[obj.selectedIndex].text);
+      //   alert(participants);
         
-        var title = document.getElementById("title");
-        alert(title.value);
-        var date = document.getElementById("date");
-        alert(date.value);
-        var duration = document.getElementById("duration-picker");
-        alert(duration.value);
+      //   var title = document.getElementById("title");
+      //   alert(title.value);
+      //   var date = document.getElementById("date");
+      //   alert(date.value);
+      //   var duration = document.getElementById("duration-picker");
+      //   alert(duration.value);
 
-        for (i = 0; i < x.length ;i++) {
-            text = x.elements[i].value;
-            //alert(text);
-        }
-        //alert("creating meeting");
+      //   for (i = 0; i < x.length ;i++) {
+      //       text = x.elements[i].value;
+      //       //alert(text);
+      //   }
+      //   //alert("creating meeting");
 
-        var socket = io();
-        socket.emit('chat message', participants);
-        //$('#m').val('');
+      //   var socket = io();
+      //   socket.emit('chat message', participants);
+      //   //$('#m').val('');
        
-        socket.on('chat message', function(msg){
-          alert(msg);
-        });
+      //   socket.on('chat message', function(msg){
+      //     alert(msg);
+      //   });
 
 
-      }
+      // }
       </script>
 
   <!-- http://en.wikipedia.org/wiki/List_of_tz_database_time_zones -->
