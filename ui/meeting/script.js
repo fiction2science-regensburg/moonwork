@@ -6,12 +6,12 @@ let width = [];
 let leftOffSet = [];
 
 // append one event to calendar
-var createEvent = (height, top, left, units) => {
+var createEvent = (height, top, left, units, title) => {
 
   let node = document.createElement("DIV");
   node.className = "event";
-  node.innerHTML = 
-  "<span class='title'> Sample Item </span> \
+  node.innerHTML =
+  "<span class='title'>" + title + "</span> \
   <br>";
 
   // Customized CSS to position each event
@@ -23,12 +23,12 @@ var createEvent = (height, top, left, units) => {
   document.getElementById("events").appendChild(node);
 }
 
-/* 
+/*
 collisions is an array that tells you which events are in each 30 min slot
-- each first level of array corresponds to a 30 minute slot on the calendar 
+- each first level of array corresponds to a 30 minute slot on the calendar
   - [[0 - 30mins], [ 30 - 60mins], ...]
 - next level of array tells you which event is present and the horizontal order
-  - [0,0,1,2] 
+  - [0,0,1,2]
   ==> event 1 is not present, event 2 is not present, event 3 is at order 1, event 4 is at order 2
 */
 
@@ -115,18 +115,18 @@ var layOutDay = (events) => {
 var myNode = document.getElementById("events");
 myNode.innerHTML = '';
 
-  getCollisions(events);
+  //getCollisions(events);
   getAttributes(events);
 
   events.forEach((event, id) => {
     let height = (event.end - event.start) / minutesinDay * containerHeight;
-    let top = event.start / minutesinDay * containerHeight; 
+    let top = event.start / minutesinDay * containerHeight;
     let end = event.end;
     let start = event.start;
     let units = width[id];
     if (!units) {units = 1};
     let left = (containerWidth / width[id]) * (leftOffSet[id] - 1) + 10;
     if (!left || left < 0) {left = 10};
-    createEvent(height, top, left, units);
+    createEvent(height, top, left, units, event.title);
   });
 }

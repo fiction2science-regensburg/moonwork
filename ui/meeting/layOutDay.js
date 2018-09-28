@@ -1,4 +1,14 @@
-//default events given
+$(document).ready(function() {
+  updateEvents();
+});
+
+function updateEvents() {
+  $.getJSON('http://localhost:3100/calender', function(events) {
+    //events = [ {start: 70, end: 130},{start:160, end:220}, {start: 540, end: 600},  {start: 610, end: 670} ];
+    layOutDay(events);
+  });
+}
+/*//default events given
 const events = [ {start: 70, end: 130},{start:160, end:220}, {start: 540, end: 600},  {start: 610, end: 670} ];
 
 layOutDay(events);
@@ -16,4 +26,4 @@ function generateMockEvents (n) {
   }
 
   return events;
-}
+}*/

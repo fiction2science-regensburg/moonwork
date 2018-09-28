@@ -156,8 +156,16 @@
         //io.set('origins', '*:*');
         socket.on('connect', function(){
           console.log("connection");
+          
           socket.once('result', function(msg){
             console.log(msg);
+            if (msg === 'none') {
+              alert('Meeting could not be scheduled.');
+              return;
+            }
+            alert('Meeting is scheduled. See your calender.');
+            // todo change to calender tab
+            updateEvents();
           });
 
           socket.emit('schedule', event);

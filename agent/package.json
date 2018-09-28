@@ -10,6 +10,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1"

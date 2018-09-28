@@ -3,7 +3,7 @@ let allCalenders =
 {
   maria: [
     {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
-    {title: 'Homework',           date: '2018-09-28', start: '6:00',  end: '8:00',   level:0 },
+    {title: 'Homework',           date: '2018-09-28', start: '06:00',  end: '8:00',   level:0 },
     {title: 'Doctor with Max',    date: '2018-09-28',start: '12:00',  end: '13:00',  level:0 },
     {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0 }
   ],
@@ -32,18 +32,27 @@ let calender = allCalenders[agentId];
 console.log(calender);
 
 
-
+// --------------------------------------------
 // api for one way communication
+var cors = require('cors');
 var express = require('express')
 var app = express();
+app.use(cors())
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/calender', function (req, res) {
   console.log('api: /calender');
-  res.send(JSON.stringify(calender));
+  let cal = [];
+  calender.forEach(function(c) {
+    let cStartDate = new Date(c.date + ' ' + c.start);
+    let cEndDate = new Date(c.date + ' ' + c.end);
+    cal.push(Object.assign(c, convertSpan(cStartDate, cEndDate)));
+  });
+  res.send(JSON.stringify(cal));
 });
 app.listen(3100, function () {
   console.log('Api listening on port ' + 3100 + '!');
 });
+// --------------------------------------------
 
 
 
@@ -158,6 +167,9 @@ function handleScheduleRequest(socket, load) {
           //startDate: "2018-09-28T11:00:00.000Z", endDate: "2018-09-28T12:00:00.000Z"}
           let diff = endDate - startDate;
           socket.emit('result', convertSpan(startDate, endDate));
+          //let event = {title: load.title};
+          //console.log(event);
+          //calender.push(event);
         }
       }
     });
