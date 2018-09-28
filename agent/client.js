@@ -31,6 +31,23 @@ if (typeof allCalenders[agentId] === 'undefined') {
 let calender = allCalenders[agentId];
 console.log(calender);
 
+
+
+// api for one way communication
+var express = require('express')
+var app = express();
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/calender', function (req, res) {
+  console.log('api: /calender');
+  res.send(JSON.stringify(calender));
+});
+app.listen(3100, function () {
+  console.log('Api listening on port ' + 3100 + '!');
+});
+
+
+
+
 var hub = require('socket.io-client')('http://localhost:3000');
 
 console.log('I am the Shadow Agent of ' + agentId);

@@ -8,8 +8,7 @@
   },
   "author": "Stefan Beyer",
   "license": "MIT",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "express": "^4.16.3",
     "socket.io": "^2.1.1",
