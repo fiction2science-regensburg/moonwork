@@ -74,9 +74,9 @@ function onConnect(){
 
 if (agentId === 'maria') {
   // Interface to UI
-  let io = require('socket.io')(3001);
+  let io = require('socket.io')(3003);
   io.on('connection', function(socket){
-    //console.log(socket);
+    console.log('web ui connected '+socket.id);
 
     socket.on('schedule', function(load) {
       handleScheduleRequest(socket, load);
@@ -132,13 +132,13 @@ function handleScheduleRequest(socket, load) {
         } else {
           console.log("Scheduling Result: none");
           if (socket) {
-            socket.emmit('result', "none");
+            socket.emit('result', "none");
           }
         }
       } else {
         console.log("Scheduling Result", format.format(startDate), format.format(endDate));
         if (socket) {
-          socket.emmit('result', {startDate: startDate, endDate: endDate});
+          socket.emit('result', {startDate: startDate, endDate: endDate});
         }
       }
     });

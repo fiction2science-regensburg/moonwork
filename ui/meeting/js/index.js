@@ -1,6 +1,6 @@
 (function( $ ) {
   'use strict';
-  
+
   // polyfill support for date input
   if ( document.getElementById( 'date' ).type !== 'date' ) {
     $( '#date' ).datepicker({ dateFormat: 'yy-mm-dd' });
@@ -12,7 +12,7 @@
   //     scrollDefaultNow: true
   //   });
   // }
-  
+
   $('#duration-picker').durationPicker();
 
   $( "#submitForm" ).click(function() {
@@ -26,13 +26,13 @@
     if (isNaN(d)) d = 0;
     if (isNaN(h)) h = 0;
     if (isNaN(m)) m = 0;
-  
+
     t = d * 24 * 60 * 60 +
         h * 60 * 60 +
         m * 60;
     return t;
   }
-  
+
   // expects 1d 11h 11m, or 1d 11h,
   // or 11h 11m, or 11h, or 11m, or 1d
   // returns a number of seconds.
@@ -53,7 +53,7 @@
     if (drx.test(sDuration)) {
       days = drx.exec(sDuration)[1];
     }
-  
+
     return to_seconds(days, hours, minutes);
   }
 
@@ -70,12 +70,12 @@
     }).filter(function( value ) {
       return !! value;
     });
-    
+
     // keep the timezone, lose the continent
     //params[ 0 ] = params[ 0 ].replace( /^.*\/(.*)$/, '$1' );
     // replace spaces with underscore in timezone
     //params[ 0 ] = params[ 0 ].replace( /\s+/g, '_' );
-   
+
     // encode all params and append to URL
     // URL += params
     //   .map( encodeURIComponent )
@@ -83,10 +83,10 @@
     //   // replace %3A with ':' (%3A not handled)
     //   .replace( /%3A/g, ':' )
     // ;
-    
+
     // print URL
     //$( this ).after( '<a class="meeting">' + '</a>' );
-    
+
     //event.preventDefault();
     return false;
   });
@@ -121,14 +121,14 @@
         //var text = "";
         //var i;
         //var obj = document.getElementById("example-collapse");
-        
-        
+
+
         // for(var i=0;i<obj.selectedIndex;i++){
-        //   alert(obj.options[i].text);  
+        //   alert(obj.options[i].text);
         // }
         //alert(obj.options[obj.selectedIndex].text);
-        
-        
+
+
         var title = document.getElementById( 'title');
         console.log(title.value);
         var date = document.getElementById( 'date' );
@@ -152,19 +152,21 @@
           duration: 1
         }
 
-        var socket = io('ws://127.0.0.1:3003', {transports: ['websocket']});
+        var socket = io('ws://localhost:3003', {transports: ['websocket']});
         //io.set('origins', '*:*');
-        socket.on('connection', function(){
+        //socket.on('connection', function(){
           console.log("connection");
           socket.once('result', function(msg){
             console.log(msg);
           });
-          
+
           socket.emit('schedule', event);
           //$('#m').val('');
-         
-        });
-        
+
+        //});
+
+        io.connect('ws://localhost:3003', {transports: ['websocket']});
+
   })
 
 
