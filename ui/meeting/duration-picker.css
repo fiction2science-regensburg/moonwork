@@ -1,7 +1,7 @@
 .durationpicker-container {
     background-color: white;
     border: 1px solid darkgrey;
-    display: inline-block;
+    display: inline-table;
     width: auto;
 }
 

@@ -3,6 +3,7 @@ body {
   color: #333;
   background: #fafafa;
   padding: 2em;
+  text-align: center;
 }
 body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -23,7 +24,11 @@ time, audio {
   font: inherit;
   vertical-align: baseline;
   font-family: 'Montserrat', sans-serif;
-  color: #D1D1D1;
+  color: #000000;
+}
+
+h1{
+  text-align: center;
 }
 
 .timings {
@@ -40,11 +45,12 @@ time, audio {
 }
 
 .timings span {
-  font-size: 200%;
+  font-size: 200%; 
   color: #696969;
 }
 .calendercontainer {
   position: relative;
+  margin: 0 auto;
   height:720px;
   width: 900px;
   display: inline-flex;
@@ -58,6 +64,10 @@ time, audio {
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
+}
+
+.container {
+  text-align: left;
 }
 
 .event {
@@ -157,4 +167,74 @@ fieldset > label {
 
 *, *::after, *::before {
   box-sizing: inherit;
+}
+
+/* new style */
+.mytabs ul,.mytabs li,.mytabs div {
+  background: hsla(0, 0%, 0%, 0);
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+  font: 13px/20px "Droid Sans", Arial, "Helvetica Neue", "Lucida Grande", sans-serif;
+  text-shadow: 0 1px 0 hsl(0, 100%, 100%);
+}
+.mytabs-nav li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+.mytabs-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mytabs-nav li:first-child a {
+  border-right: 0;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.mytabs-nav .tab-active a {
+  background: hsl(0, 100%, 100%);
+  border-bottom-color: hsla(0, 0%, 0%, 0);
+  color: hsl(85, 54%, 51%);
+  cursor: default;
+}
+.mytabs-nav a {
+  background: hsl(120, 11%, 96%);
+  border: 1px solid hsl(210, 6%, 79%);
+  color: hsl(215, 6%, 57%);
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 44px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 10px;
+
+}
+.mytabs-nav li {
+  float: left;
+}
+.mytabs-stage {
+  border: 1px solid hsl(210, 6%, 79%);
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  -ms-border-radius: 0 0 6px 6px;
+  -o-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  border-top: 0;
+  clear: both;
+  margin-bottom: 20px;
+  position: relative;
+  top: -1px;
+  
+}
+.mytabs-stage p {
+  margin: 0;
+  padding: 20px;
+  color: hsl(0, 0%, 33%);
 }

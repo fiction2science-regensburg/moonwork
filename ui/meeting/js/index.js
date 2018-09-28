@@ -1,5 +1,16 @@
 (function( $ ) {
   'use strict';
+  
+  $('.mytabs-nav a').on('click', function (event) {
+    event.preventDefault();
+    
+    $('.tab-active').removeClass('tab-active');
+    $(this).parent().addClass('tab-active');
+    $('.mytabs-stage > div').hide();
+    $($(this).attr('href')).show();
+  });
+
+  //$('.mytabs-nav a:first').trigger('click'); // Default
 
   // polyfill support for date input
   if ( document.getElementById( 'date' ).type !== 'date' ) {
