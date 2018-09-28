@@ -3,15 +3,15 @@ let allCalenders =
 {
   maria: [
     {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
-    {title: 'Homework',           date: '2018-09-28', start: '6:00',  end: '8:00',   level:0.8 },
-    {title: 'Doctor with Max',    date: '2018-09-28',start: '12:00',  end: '13:00',  level:0.2 },
-    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0.7 }
+    {title: 'Homework',           date: '2018-09-28', start: '6:00',  end: '8:00',   level:0 },
+    {title: 'Doctor with Max',    date: '2018-09-28',start: '12:00',  end: '13:00',  level:0 },
+    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0 }
   ],
   max: [
     {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
     {title: 'School',             date: '2018-09-28', start: '7:00',  end: '12:00',  level:0 },
-    {title: 'Doctor with Mom',    date: '2018-09-28', start: '12:00', end: '13:00',  level:0.2 },
-    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0.7 }
+    {title: 'Doctor with Mom',    date: '2018-09-28', start: '12:00', end: '13:00',  level:0 },
+    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0 }
   ]
 };
 
@@ -119,7 +119,7 @@ function handleScheduleRequest(socket, load) {
       let ok = true;
       for (let i in occupationLevels) {
         o = occupationLevels[i];
-        if (o.occupationLevel === 0) {
+        if (o.occupationLevel < 1) {
           ok = false;
           break;
         }
@@ -206,5 +206,5 @@ function getMyOccupation(startDate, endDate) {
 
     return c.level;
   }
-  return 0;
+  return 1;
 }
