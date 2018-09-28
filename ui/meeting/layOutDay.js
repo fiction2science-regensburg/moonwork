@@ -1,5 +1,5 @@
 //default events given
-const events = [ {start: 70, end: 150}, {start: 540, end: 600},  {start: 610, end: 670} ];
+const events = [ {start: 70, end: 130},{start:160, end:220}, {start: 540, end: 600},  {start: 610, end: 670} ];
 
 layOutDay(events);
 

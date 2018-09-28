@@ -130,11 +130,11 @@
         
         
         var title = document.getElementById( 'title');
-        alert(title.value);
+        console.log(title.value);
         var date = document.getElementById( 'date' );
-        alert(date.value);
+        console.log(date.value);
         var duration = document.getElementById("duration-picker");
-        alert(duration.value);
+        console.log(duration.value);
 
         // for (i = 0; i < x.length ;i++) {
         //     text = x.elements[i].value;
@@ -143,15 +143,28 @@
         //alert("creating meeting");
 
         var values = $('#example-collapse').val();
-        alert(values);
+        console.log(values);
 
-        var socket = io();
-        socket.emit('chat message', participants);
-        //$('#m').val('');
-       
-        socket.on('chat message', function(msg){
-          alert(msg);
+        var event = {
+          type: 'meeting',
+          participants: ["max"],
+          date: "2018-09-28",
+          duration: 1
+        }
+
+        var socket = io('ws://127.0.0.1:3003', {transports: ['websocket']});
+        //io.set('origins', '*:*');
+        socket.on('connection', function(){
+          console.log("connection");
+          socket.once('result', function(msg){
+            console.log(msg);
+          });
+          
+          socket.emit('schedule', event);
+          //$('#m').val('');
+         
         });
+        
   })
 
 
