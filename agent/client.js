@@ -2,16 +2,16 @@
 let allCalenders =
 {
   maria: [
-    {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:4 },
-    {title: 'Homework',           date: '2018-09-28', start: '6:00',  end: '8:00',   level:1 },
-    {title: 'Doctor with Max',    date: '2018-09-28',start: '12:00',  end: '13:00',  level:2 },
-    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:4 }
+    {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
+    {title: 'Homework',           date: '2018-09-28', start: '6:00',  end: '8:00',   level:0.8 },
+    {title: 'Doctor with Max',    date: '2018-09-28',start: '12:00',  end: '13:00',  level:0.2 },
+    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0.7 }
   ],
   max: [
-    {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:4 },
-    {title: 'School',             date: '2018-09-28', start: '7:00',  end: '12:00',  level:3 },
-    {title: 'Doctor with Mom',    date: '2018-09-28', start: '12:00', end: '13:00',  level:2 },
-    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:4 }
+    {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
+    {title: 'School',             date: '2018-09-28', start: '7:00',  end: '12:00',  level:0 },
+    {title: 'Doctor with Mom',    date: '2018-09-28', start: '12:00', end: '13:00',  level:0.2 },
+    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0.7 }
   ]
 };
 
@@ -98,8 +98,6 @@ function handleScheduleRequest(socket, load) {
 
   let currentHour = 0;
 
-  let counter = 0;
-
   testDate();
 
   function testDate() {
@@ -111,14 +109,37 @@ function handleScheduleRequest(socket, load) {
     let endDate = new Date();
     endDate.setTime(startDate.getTime());
     endDate.setHours(currentHour+load.duration);
+
     console.log(format.format(startDate), format.format(endDate));
 
     loadOccupation(startDate, endDate, load.participants).then(function(occupationLevels) {
-      counter++;
-      console.log(counter + ' occupationLevels', occupationLevels); //???
-      if (counter<24) {
-        currentHour++;
-        testDate();
+      console.log(' occupationLevels', occupationLevels); //???
+
+      // to improve
+      let ok = true;
+      for (let i in occupationLevels) {
+        o = occupationLevels[i];
+        if (o.occupationLevel === 0) {
+          ok = false;
+          break;
+        }
+      }
+
+      if (!ok) {
+        if (currentHour < 24) {
+          currentHour++;
+          testDate();
+        } else {
+          console.log("Scheduling Result: none");
+          if (socket) {
+            socket.emmit('result', "none");
+          }
+        }
+      } else {
+        console.log("Scheduling Result", format.format(startDate), format.format(endDate));
+        if (socket) {
+          socket.emmit('result', {startDate: startDate, endDate: endDate});
+        }
       }
     });
   }
@@ -128,14 +149,14 @@ function handleScheduleRequest(socket, load) {
 
 function loadOccupation(startDate, endDate, participants) {
   return new Promise(function(resolve, reject) {
-    let occupationLevels = [getMyOccupation(startDate, endDate)]; // this is me first
+    let occupationLevels = [{participant: agentId, occupationLevel: getMyOccupation(startDate, endDate)}]; // this is me first
     let requests = [];
 
     participants.forEach(function(participant) {
-      console.log('ask '+participant);
+      //console.log('ask '+participant);
       requests.push(new Promise(function (resolve, reject) {
         hub.once('occupationLevel', function(occupationLevel) {
-          console.log(participant + ' said ' + occupationLevel);
+          //console.log(participant + ' said ' + occupationLevel);
           occupationLevels.push({participant: participant, occupationLevel: occupationLevel});
           resolve();
         });
@@ -168,7 +189,7 @@ function loadOccupation(startDate, endDate, participants) {
 function handleWantsOccupationLevel(data) {
   let startDate = new Date(data.startDate);
   let endDate = new Date(data.endDate);
-  console.log('Hub wantsOccupationLevel', format.format(startDate), format.format(endDate));
+  //console.log('Hub wantsOccupationLevel', format.format(startDate), format.format(endDate));
   hub.emit('occupationLevel', getMyOccupation(startDate, endDate));
 }
 
@@ -181,7 +202,7 @@ function getMyOccupation(startDate, endDate) {
     if (startDate >= cEndDate ) continue;
     if (endDate <= cStartDate ) continue;
 
-    console.log('Da ist ein Termin: ', format.format(cStartDate), format.format(cEndDate), c.level);
+    //console.log('Da ist ein Termin: ', format.format(cStartDate), format.format(cEndDate), c.level);
 
     return c.level;
   }

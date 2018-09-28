@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node hub",
+    "start": "node hub"
   },
   "author": "Stefan Beyer",
   "license": "MIT",
