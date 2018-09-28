@@ -1,6 +1,6 @@
 const containerHeight = 720;
 const containerWidth = 600;
-const minutesinDay = 60 * 12;
+const minutesinDay = 60 * 24;
 let collisions = [];
 let width = [];
 let leftOffSet = [];
@@ -12,7 +12,7 @@ var createEvent = (height, top, left, units) => {
   node.className = "event";
   node.innerHTML = 
   "<span class='title'> Sample Item </span> \
-  <br><span class='location'> Sample Location </span>";
+  <br>";
 
   // Customized CSS to position each event
   node.style.width = (containerWidth/units) + "px";
