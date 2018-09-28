@@ -154,7 +154,7 @@
 
         var socket = io('ws://localhost:3003', {transports: ['websocket']});
         //io.set('origins', '*:*');
-        //socket.on('connection', function(){
+        socket.on('connect', function(){
           console.log("connection");
           socket.once('result', function(msg){
             console.log(msg);
@@ -163,9 +163,9 @@
           socket.emit('schedule', event);
           //$('#m').val('');
 
-        //});
+        });
 
-        io.connect('ws://localhost:3003', {transports: ['websocket']});
+        //io.connect('ws://localhost:3003', {transports: ['websocket']});
 
   })
 

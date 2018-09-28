@@ -71,7 +71,7 @@ function onConnect(){
 
 }
 
-
+// Connetion for the User Interface, just for maria
 if (agentId === 'maria') {
   // Interface to UI
   let io = require('socket.io')(3003);
@@ -138,7 +138,9 @@ function handleScheduleRequest(socket, load) {
       } else {
         console.log("Scheduling Result", format.format(startDate), format.format(endDate));
         if (socket) {
-          socket.emit('result', {startDate: startDate, endDate: endDate});
+          //startDate: "2018-09-28T11:00:00.000Z", endDate: "2018-09-28T12:00:00.000Z"}
+          let diff = endDate - startDate;
+          socket.emit('result', convertSpan(startDate, endDate));
         }
       }
     });
@@ -207,4 +209,8 @@ function getMyOccupation(startDate, endDate) {
     return c.level;
   }
   return 1;
+}
+
+function convertSpan(start, end) {
+  return {start: start.getHours()*60, end: end.getHours()*60};
 }
