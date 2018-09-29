@@ -161,7 +161,7 @@
           title: title.value,
           participants: values,
           date: "2018-09-29",
-          duration: $("input[name=duration-picker]").val()
+          duration: parseInt($("input[name=duration-picker]").val())
         }
 
         console.log(event);
