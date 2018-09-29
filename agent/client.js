@@ -49,7 +49,7 @@ let allCalenders =
     {title: 'customer meeting', date: '2018-09-29', start: '08:00', end: '12:00',  level:0 },
     {title: 'lunch', date: '2018-09-29', start: '12:00', end: '13:00',  level:0 },
     {title: 'office meeting', date: '2018-09-29', start: '13:00', end: '15:00',  level:0 },
-    {title: 'work on project', date: '2018-09-29', start: '19:10', end: '20:00',  level:0 },
+    {title: 'work on project', date: '2018-09-29', start: '19:00', end: '20:00',  level:0 },
     {title: 'dinner', date: '2018-09-29', start: '20:00', end: '22:00',  level:0 },
     {title: 'Night', date: '2018-09-29', start: '22:00', end: '23:00',  level:0 }
   ],
@@ -179,10 +179,10 @@ function handleScheduleRequest(socket, load) {
     endDate.setTime(startDate.getTime());
     endDate.setUTCHours(currentHour+load.duration);
 
-    console.log(startDate, endDate);
+    console.log("test slot: ", startDate, endDate);
 
     loadOccupation(startDate, endDate, load.participants).then(function(occupationLevels) {
-      console.log(' occupationLevels', occupationLevels); //???
+      console.log('occupationLevels', occupationLevels); //???
 
       // to improve
       let ok = true;
@@ -220,7 +220,7 @@ function handleScheduleRequest(socket, load) {
             end:endDate.getUTCHours()+":00",
             level:0
           };
-          console.log(event);
+          console.log("new evet", event);
           calender.push(event);
         }
       }
@@ -231,6 +231,16 @@ function handleScheduleRequest(socket, load) {
 
 
 function loadOccupation(startDate, endDate, participants) {
+
+  return new Promise(function(resolve, reject) {
+    let occupationLevels = [{participant: agentId, occupationLevel: getMyOccupation(startDate, endDate)}]; // this is me first
+    participants.forEach(function(participant) {
+      occupationLevels.push({participant: participant, occupationLevel: getOccupation(participant, startDate, endDate)});
+      resolve(occupationLevels);
+    });
+  });
+
+  // messaging stuff
   return new Promise(function(resolve, reject) {
     let occupationLevels = [{participant: agentId, occupationLevel: getMyOccupation(startDate, endDate)}]; // this is me first
     let requests = [];
@@ -272,13 +282,14 @@ function loadOccupation(startDate, endDate, participants) {
 function handleWantsOccupationLevel(data) {
   let startDate = new Date(data.startDate);
   let endDate = new Date(data.endDate);
-  //console.log('Hub wantsOccupationLevel', format.format(startDate), format.format(endDate));
-  hub.emit('occupationLevel', getMyOccupation(startDate, endDate));
+  let level = getMyOccupation(startDate, endDate);
+  console.log('Hub wantsOccupationLevel', data.startDate, data.endDate, " level is: ", level);
+  hub.emit('occupationLevel', level);
 }
 
-function getMyOccupation(startDate, endDate) {
-  for (let i in calender) {
-    let c = calender[i];
+function getOccupation(otherAgentId, startDate, endDate) {
+  for (let i in allCalenders[otherAgentId]) {
+    let c = allCalenders[otherAgentId][i];
     let cStartDate = new Date(c.date + 'T' + c.start+'Z');
     let cEndDate = new Date(c.date + 'T' + c.end+'Z');
 
@@ -290,6 +301,11 @@ function getMyOccupation(startDate, endDate) {
     return c.level;
   }
   return 1;
+}
+
+
+function getMyOccupation(startDate, endDate) {
+  return getOccupation(agentId, startDate, endDate);
 }
 
 function convertSpan(start, end) {

@@ -23,17 +23,16 @@ io.on('connection', function(socket){
   });
 
   socket.on('call', function(data) {
-    console.log('call ', data);
+    console.log('call ', data.agentId, data.load.startDate, data.load.endDate);
     if (typeof listen[data.function] === 'undefined') return;
     listen[data.function].forEach(function(l) {
       if (!listen[data.function]) return;
       if (l.agentId === data.agentId) {
-        console.log('calling '+l.agentId);
         l.once('occupationLevel', function(level) {
-          console.log('answer from '+l.agentId + ' '+ level);
+          console.log('answer for ', data.agentId, data.load.startDate, data.load.endDate, level);
           socket.emit('occupationLevel', level);
         });
-        l.emit(data.function, data.load);
+        l.emit('wantsOccupationLevel', data.load);
       }
     });
   });

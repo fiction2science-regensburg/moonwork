@@ -1,9 +1,9 @@
 (function( $ ) {
   'use strict';
-  
+
   $('.mytabs-nav a').on('click', function (event) {
     event.preventDefault();
-    
+
     $('.tab-active').removeClass('tab-active');
     $(this).parent().addClass('tab-active');
     $('.mytabs-stage > div').hide();
@@ -159,14 +159,14 @@
         var event = {
           type: 'meeting',
           title: title.value,
-          participants: values,
+          participants: ['kim', 'tom'], //values,
           date: "2018-09-29",
-          duration: 2
+          duration: 1
         }
 
         var socket = io('ws://localhost:3003', {transports: ['websocket']});
         //io.set('origins', '*:*');
-        socket.on('connect', function(){
+        socket.once('connect', function(){
           console.log("connection");
 
           socket.once('result', function(msg){
