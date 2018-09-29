@@ -172,12 +172,12 @@ function handleScheduleRequest(socket, load) {
   function testDate() {
 
     let startDate = new Date(load.date);
-    startDate.setHours(currentHour);
-    startDate.setMinutes(0);
-    startDate.setSeconds(0);
+    startDate.setUTCHours(currentHour);
+    startDate.setUTCMinutes(0);
+    startDate.setUTCSeconds(0);
     let endDate = new Date();
     endDate.setTime(startDate.getTime());
-    endDate.setHours(currentHour+load.duration);
+    endDate.setUTCHours(currentHour+load.duration);
 
     console.log(startDate, endDate);
 
