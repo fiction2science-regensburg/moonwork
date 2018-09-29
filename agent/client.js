@@ -39,7 +39,7 @@ let allCalenders =
     {title: 'Night', date: '2018-09-29', start: '0:00',  end: '06:00',   level:0 },
     {title: 'breakfast', date: '2018-09-29', start: '6:00',  end: '7:00',  level:0 },
     {title: 'driving to shool', date: '2018-09-29', start: '7:00',  end: '8:00',  level:0 },
-    {title: 'shool', date: '2018-09-29', start: '8:00', end: '15:50',  level:0 },
+    {title: 'shool', date: '2018-09-29', start: '8:00', end: '16:00',  level:0 },
     {title: 'Dinner with family', date: '2018-09-29', start: '20:00', end: '22:00',  level:0 }
   ],
   tom: [
@@ -85,8 +85,8 @@ if (agentId === 'maria') {
     let cal = [];
     calender.forEach(function(c) {
       console.log('date---->'+c.date);
-      let cStartDate = new Date(c.date + ' ' + c.start);
-      let cEndDate = new Date(c.date + ' ' + c.end);
+      let cStartDate = new Date(c.date + 'T' + c.start+'Z');
+      let cEndDate = new Date(c.date + 'T' + c.end+'Z');
       cal.push(Object.assign({}, c, convertSpan(cStartDate, cEndDate)));
     });
     res.send(JSON.stringify(cal));
@@ -279,8 +279,8 @@ function handleWantsOccupationLevel(data) {
 function getMyOccupation(startDate, endDate) {
   for (let i in calender) {
     let c = calender[i];
-    let cStartDate = new Date(c.date + ' ' + c.start);
-    let cEndDate = new Date(c.date + ' ' + c.end);
+    let cStartDate = new Date(c.date + 'T' + c.start+'Z');
+    let cEndDate = new Date(c.date + 'T' + c.end+'Z');
 
     if (startDate >= cEndDate ) continue;
     if (endDate <= cStartDate ) continue;
