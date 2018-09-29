@@ -158,9 +158,10 @@
 
         var event = {
           type: 'meeting',
-          participants: ["max"],
-          date: "2018-09-28",
-          duration: 1
+          title: title.value,
+          participants: values,
+          date: "2018-09-29",
+          duration: 2
         }
 
         var socket = io('ws://localhost:3003', {transports: ['websocket']});
