@@ -144,7 +144,7 @@
         //console.log(title.value);
         var date = document.getElementById( 'date' );
         //console.log(date.value);
-        var duration = document.getElementById("duration-picker");
+        var duration = parseInt(document.getElementById("duration-picker"));
         //console.log(duration.value);
 
         // for (i = 0; i < x.length ;i++) {
