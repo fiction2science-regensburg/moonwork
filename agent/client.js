@@ -106,8 +106,8 @@ console.log('I am the Shadow Agent of ' + agentId);
 
 hub.on('connect', onConnect);
 
-let format = new Intl.DateTimeFormat('de-DE', {year: 'numeric', month: 'numeric', day: 'numeric',
-hour: 'numeric', minute: 'numeric', second: 'numeric'});
+/*let format = new Intl.DateTimeFormat('de-DE', {year: 'numeric', month: 'numeric', day: 'numeric',
+hour: 'numeric', minute: 'numeric', second: 'numeric'});*/
 
 
 
@@ -179,7 +179,7 @@ function handleScheduleRequest(socket, load) {
     endDate.setTime(startDate.getTime());
     endDate.setHours(currentHour+load.duration);
 
-    console.log(format.format(startDate), format.format(endDate));
+    console.log(startDate, endDate);
 
     loadOccupation(startDate, endDate, load.participants).then(function(occupationLevels) {
       console.log(' occupationLevels', occupationLevels); //???
@@ -205,7 +205,7 @@ function handleScheduleRequest(socket, load) {
           }
         }
       } else {
-        console.log("Scheduling Result", format.format(startDate), format.format(endDate));
+        console.log("Scheduling Result", startDate, endDate);
         if (socket) {
           //startDate: "2018-09-29T11:00:00.000Z", endDate: "2018-09-29T12:00:00.000Z"}
           let diff = endDate - startDate;
@@ -285,7 +285,7 @@ function getMyOccupation(startDate, endDate) {
     if (startDate >= cEndDate ) continue;
     if (endDate <= cStartDate ) continue;
 
-    console.log('Da ist ein Termin: ', format.format(cStartDate), format.format(cEndDate), c.level);
+    console.log('Da ist ein Termin: ', cStartDate, cEndDate, c.level);
 
     return c.level;
   }
