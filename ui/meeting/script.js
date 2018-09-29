@@ -1,5 +1,5 @@
 const containerHeight = 720;
-const containerWidth = 600;
+const containerWidth = 500;
 const minutesinDay = 60 * 24;
 let collisions = [];
 let width = [];

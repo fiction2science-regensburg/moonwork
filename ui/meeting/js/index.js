@@ -141,11 +141,11 @@
 
 
         var title = document.getElementById( 'title');
-        console.log(title.value);
+        //console.log(title.value);
         var date = document.getElementById( 'date' );
-        console.log(date.value);
+        //console.log(date.value);
         var duration = document.getElementById("duration-picker");
-        console.log(duration.value);
+        //console.log(duration.value);
 
         // for (i = 0; i < x.length ;i++) {
         //     text = x.elements[i].value;
@@ -159,29 +159,33 @@
         var event = {
           type: 'meeting',
           title: title.value,
-          participants: ['kim', 'tom'], //values,
+          participants: values,
           date: "2018-09-29",
-          duration: 1
+          duration: $("input[name=duration-picker]").val()
         }
+
+        console.log(event);
 
         var socket = io('ws://localhost:3003', {transports: ['websocket']});
         //io.set('origins', '*:*');
         socket.once('connect', function(){
           console.log("connection");
+          $('#loader').show();
+          setTimeout(function() {
+            $('#loader').hide();
+            socket.once('result', function(msg){
+              console.log(msg);
+              if (msg === 'none') {
+                alert('Meeting could not be scheduled.');
+                return;
+              }
+              alert('Meeting is scheduled. See your calender.');
+              // todo change to calender tab
+              updateEvents();
+            });
 
-          socket.once('result', function(msg){
-            console.log(msg);
-            if (msg === 'none') {
-              alert('Meeting could not be scheduled.');
-              return;
-            }
-            alert('Meeting is scheduled. See your calender.');
-            // todo change to calender tab
-            updateEvents();
-          });
-
-          socket.emit('schedule', event);
-          //$('#m').val('');
+            socket.emit('schedule', event);
+          },2000);
 
         });
 

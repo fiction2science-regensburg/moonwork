@@ -4,29 +4,32 @@
   <head>
     <meta charset="UTF-8">
     <title>SmartAssistant</title>
-    
-    
+
+
     <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
   <link rel='stylesheet' href='https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.css'>
 
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="duration-picker.css">
 
   <!-- Include Twitter Bootstrap and jQuery: -->
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  
+
   <!-- Include the plugin's CSS and JS: -->
   <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
   <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+
   </head>
 
   <body>
         <img class="logo" src="logo.png"/>
-        <span class="titleLabel">MoonWork</span>
+        <span class="titleLabel">&nbsp;&nbsp;&nbsp;MoonWork</span>
         <ul class="mytabs-nav">
                 <li class="tab-active"><a href="#tab-1" rel="nofollow">Calender</a>
                 </li>
@@ -35,7 +38,7 @@
             </ul>
             <div class="mytabs-stage">
                 <div id="tab-1" style="display: block;">
-                        <div class="container">
+                        <div class="">
                                 <h1>Your calender</h1>
                         </div>
                         <div class ="calendercontainer">
@@ -89,75 +92,76 @@
                                   <div> <span> 11:00 </span>PM </div>
                                   <div> 11:30 </div>
                                 </div>
-                              
+
                                 <div class="days" id="events">
                                 </div>
-                              
+
                         </div>
                 </div>
                 <div id="tab-2" style="display: none;">
-                        
-                        <div class="container">
+
+                        <div class="">
                                 <h1>Add a meeting</h1>
-                                <form class="form" id="foo_form">
-                                  <div class="form-group">
-                                            <label for="title">Title</label>
-                                  
-                                            <input type="text" name="title" id="title" size="30" placeholder="Meeting the the stakeholders">
+                                <form class="form form-horizontal" id="foo_form" style="padding:10px;">
+
+                                  <div class="form-group form-group-lg">
+                                    <label for="title" class="col-xs-2 control-label">Title</label>
+                                    <div class="col-xs-10">
+                                      <input type="text" class="form-control" name="title" id="title" size="30" placeholder="What is it about"/>
                                     </div>
-                                  
+                                  </div>
+
                                             <!-- <div class="panel-body">
-                                  <label for="timezone">Timezone</label>  
+                                  <label for="timezone">Timezone</label>
                                   <input type="text" name="timezone" id="timezone" size="30" list="tz" placeholder="Continent/Timezone">
                                   </div> -->
-                              
-                                  <div class="panel-body">
-                                  <label for="date">Day</label>
-                                  <input type="date" name="date" id="date" size="20" placeholder="YYYY-MM-DD">
+
+                                  <div class="form-group form-group-lg">
+                                    <label  class="col-xs-2 control-label" for="date">Day</label>
+                                    <div class="col-xs-10">
+                                      <input type="date"  class="form-control" name="date" id="date" size="20" placeholder="YYYY-MM-DD">
+                                    </div>
                                   </div>
-                                  
-                                  <div class="panel-body">
-                                  <label for="time">Duration</label>
-                                  <!-- <input type="time" id="time" size="20" placeholder="HH:MM:SS" required> -->
-                                  <input id="duration-picker" type="text" name="duration-picker">
+
+                                  <div class="form-group form-group-lg">
+                                    <label  class="col-xs-2 control-label" for="duration-picker">Duration</label>
+                                    <div class="col-xs-10">
+                                      <input value="1" type="number"  class="form-control" name="duration-picker" >
+                                    </div>
                                   </div>
-                                  <!-- <fieldset>
-                                    <legend>Repeat?</legend>
-                                    <input type="radio" name="repeat" id="repeat-never" value="" checked required><label for="repeat-never">Never</label>
-                                        <input type="radio" name="repeat" id="repeat-w" value="w"><label for="repeat-w">Weekly</label>
-                                    <input type="radio" name="repeat" id="repeat-b" value="b"><label for="repeat-b">Bi-weekly</label>
-                                  </fieldset> -->
-                                            
-                                  
-                                          <div class="panel-body">
-                                                <label for="example-collapse">Participants</label>
-                                                <select id="example-collapse" multiple="multiple">
-                                                    <option value="kim">Kim</option>
-                                                    <option value="clara">Clara</option>
-                                                    <option value="ricardo">Ricardo</option>
-                                                    <option value="lucas">Lucas</option>
-                                                    <option value="peter">Peter</option>
-                                                    <option value="tom">Tom</option>
-                                                </select>
-                                          </div>
-                              
-                                          <div class="panel-body">
-                                          <input type="button" id="submit" value="Create">
-                                          </div>
-                                      
+
+                                  <div class="form-group form-group-lg">
+                                    <label  class="col-xs-2 control-label" for="example-collapse">Participants</label>
+                                    <div class="col-xs-10">
+                                      <select id="example-collapse" class="form-control" multiple="multiple">
+                                          <option value="maria">Maria</option>
+                                          <option value="lukas">Realestate Agent</option>
+                                          <option value="kim">Kim</option>
+                                          <option value="tom">Tom</option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="form-group form-group-lg">
+                                    <div class="col-xs-10 col-xs-offset-2">
+                                      <input type="button" class="btn btn-primary btn-lg" id="submit" value="Create">&nbsp;&nbsp;&nbsp; <img style="display:none;" id="loader" src="ajax-loader.gif"/>
+                                    </div>
+                                  </div>
+
                                 </form>
                                 </div>
                 </div>
-            </div> 
+            </div>
 
-      
-      
-        
+
+
+
         <script src="./script.js"></script>
         <script src="./layOutDay.js"></script>
 
 
-  
+
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
   <script>
@@ -168,7 +172,7 @@
       //   var obj = document.getElementById("example-collapse");
       //   //alert(obj.options[obj.selectedIndex].text);
       //   alert(participants);
-        
+
       //   var title = document.getElementById("title");
       //   alert(title.value);
       //   var date = document.getElementById("date");
@@ -185,7 +189,7 @@
       //   var socket = io();
       //   socket.emit('chat message', participants);
       //   //$('#m').val('');
-       
+
       //   socket.on('chat message', function(msg){
       //     alert(msg);
       //   });
