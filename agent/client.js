@@ -1,18 +1,58 @@
 
 let allCalenders =
+// {
+//   maria: [
+//     {title: 'Night',              date: '2018-09-29', start: '0:00',  end: '6:00',   level:0 },
+//     {title: 'Homework',           date: '2018-09-29', start: '06:00',  end: '8:00',   level:0 },
+//     {title: 'Doctor with Max',    date: '2018-09-29',start: '12:00',  end: '13:00',  level:0 },
+//     {title: 'Dinner with family', date: '2018-09-29', start: '18:00', end: '19:00',  level:0 }
+//   ],
+//   tom: [
+//     {title: 'Night',              date: '2018-09-29', start: '0:00',  end: '6:00',   level:0 },
+//     {title: 'School',             date: '2018-09-29', start: '7:00',  end: '12:00',  level:0 },
+//     {title: 'Doctor with Mom',    date: '2018-09-29', start: '12:00', end: '13:00',  level:0 },
+//     {title: 'Dinner with family', date: '2018-09-29', start: '18:00', end: '19:00',  level:0 }
+//   ]
+// };
+
 {
   maria: [
-    {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
-    {title: 'Homework',           date: '2018-09-28', start: '06:00',  end: '8:00',   level:0 },
-    {title: 'Doctor with Max',    date: '2018-09-28',start: '12:00',  end: '13:00',  level:0 },
-    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0 }
+    {title: 'Night', date: '2018-09-29', start: '0:00',  end: '06:00',   level:0 },
+    {title: 'breakfest', date: '2018-09-29', start: '6:00',  end: '7:00',   level:0 },
+    {title: 'driving to shool and work',   date: '2018-09-29', start: '7:00',  end: '8:00',   level:0 },
+    {title: 'meeting', date: '2018-09-29',start: '9:00',  end: '11:00',  level:0 },
+    {title: 'business lunch', date: '2018-09-29', start: '12:00', end: '14:00',  level:0 },
+    {title: 'work on project', date: '2018-09-29', start: '14:00', end: '16:00',  level:0 },
+    {title: 'work on project', date: '2018-09-29', start: '18:00', end: '20:00',  level:0 },
+    {title: 'dinner', date: '2018-09-29', start: '20:00', end: '22:00',  level:0 },
+    {title: 'Night', date: '2018-09-29', start: '22:00', end: '23:00',  level:0 }
   ],
-  max: [
-    {title: 'Night',              date: '2018-09-28', start: '0:00',  end: '6:00',   level:0 },
-    {title: 'School',             date: '2018-09-28', start: '7:00',  end: '12:00',  level:0 },
-    {title: 'Doctor with Mom',    date: '2018-09-28', start: '12:00', end: '13:00',  level:0 },
-    {title: 'Dinner with family', date: '2018-09-28', start: '18:00', end: '19:00',  level:0 }
-  ]
+  lukas: [
+    {title: 'Night', date: '2018-09-29', start: '0:00',  end: '06:00',   level:0 },
+    {title: 'breakfast', date: '2018-09-29', start: '6:00',  end: '7:00',  level:0 },
+    {title: 'driving to shool', date: '2018-09-29', start: '7:00',  end: '8:00',  level:0 },
+    {title: 'shool', date: '2018-09-29', start: '8:00', end: '13:00',  level:0 },
+    {title: 'grandma', date: '2018-09-29', start: '13:00', end: '16:00',  level:0 },
+    {title: 'Dinner with family', date: '2018-09-29', start: '20:00', end: '22:00',  level:0 }
+  ],
+  kim: [
+    {title: 'Night', date: '2018-09-29', start: '0:00',  end: '06:00',   level:0 },
+    {title: 'breakfast', date: '2018-09-29', start: '6:00',  end: '7:00',  level:0 },
+    {title: 'driving to shool', date: '2018-09-29', start: '7:00',  end: '8:00',  level:0 },
+    {title: 'shool', date: '2018-09-29', start: '8:00', end: '15:50',  level:0 },
+    {title: 'Dinner with family', date: '2018-09-29', start: '20:00', end: '22:00',  level:0 }
+  ],
+  tom: [
+    {title: 'Night', date: '2018-09-29', start: '0:00',  end: '06:00',   level:0 },
+    {title: 'breakfast', date: '2018-09-29', start: '06:00',  end: '09:30',  level:0 },
+    {title: 'driving to work', date: '2018-09-29', start: '7:00',  end: '8:00',  level:0 },
+    {title: 'customer meeting', date: '2018-09-29', start: '8:00', end: '12:00',  level:0 },
+    {title: 'lunch', date: '2018-09-29', start: '12:00', end: '13:00',  level:0 },
+    {title: 'office meeting', date: '2018-09-29', start: '13:00', end: '15:00',  level:0 },
+    {title: 'work on project', date: '2018-09-29', start: '19:10', end: '20:00',  level:0 },
+    {title: 'dinner', date: '2018-09-29', start: '20:00', end: '22:00',  level:0 },
+    {title: 'Night', date: '2018-09-29', start: '22:00', end: '23:00',  level:0 }
+  ],
 };
 
 
@@ -44,6 +84,7 @@ if (agentId === 'maria') {
     console.log('api: /calender');
     let cal = [];
     calender.forEach(function(c) {
+      console.log('date---->'+c.date);
       let cStartDate = new Date(c.date + ' ' + c.start);
       let cEndDate = new Date(c.date + ' ' + c.end);
       cal.push(Object.assign({}, c, convertSpan(cStartDate, cEndDate)));
@@ -89,7 +130,7 @@ function onConnect(){
       let load = {
         type: 'meeting',
         participants: ['max'],
-        date: '2018-09-28',
+        date: '2018-09-29',
         duration: 1
       };
       handleScheduleRequest(null, load);
@@ -166,16 +207,17 @@ function handleScheduleRequest(socket, load) {
       } else {
         console.log("Scheduling Result", format.format(startDate), format.format(endDate));
         if (socket) {
-          //startDate: "2018-09-28T11:00:00.000Z", endDate: "2018-09-28T12:00:00.000Z"}
+          //startDate: "2018-09-29T11:00:00.000Z", endDate: "2018-09-29T12:00:00.000Z"}
           let diff = endDate - startDate;
           socket.emit('result', convertSpan(startDate, endDate));
 
           // add the event
           let event = {
             title: load.title,
-            date: startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate(),
-            start:startDate.getHours()+":00",
-            end:endDate.getHours()+":00",
+            //date: startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate(),
+            date: "2018-09-29",
+            start:startDate.getUTCHours()+":00",
+            end:endDate.getUTCHours()+":00",
             level:0
           };
           console.log(event);
@@ -243,7 +285,7 @@ function getMyOccupation(startDate, endDate) {
     if (startDate >= cEndDate ) continue;
     if (endDate <= cStartDate ) continue;
 
-    //console.log('Da ist ein Termin: ', format.format(cStartDate), format.format(cEndDate), c.level);
+    console.log('Da ist ein Termin: ', format.format(cStartDate), format.format(cEndDate), c.level);
 
     return c.level;
   }
@@ -251,5 +293,5 @@ function getMyOccupation(startDate, endDate) {
 }
 
 function convertSpan(start, end) {
-  return {start: start.getHours()*60, end: end.getHours()*60};
+  return {start: start.getUTCHours()*60, end: end.getUTCHours()*60};
 }
